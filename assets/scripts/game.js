@@ -15,61 +15,61 @@ for (i = 0; i < wordToGuess.length; i++) {
 }
 
 var lettersRemaining = wordToGuess.length;
+var guessesRemaining = 5;
+var wins = 0;
+var lost = "You Lost!";
 
+
+function startGame() {
+    displayUnderscores();
+    getContainers("guesses_remaining_container", guessesRemaining);
+    getContainers("wins_container", wins);
+}
 // displays the correct number of blank spaces for the word that was randomly selected. Also adds a space between each underscore.
 function displayUnderscores() {
     var underScores = document.getElementById("word_to_guess_container");
     underScores.innerHTML = underscoreArray.join(" ");
 }
 
-    function checkLetters(keyPressed) {
-        var userLetter = keyPressed.key;
-        for( a = 0; a < wordToGuess.length ; a++) {
-            if (wordToGuess[a] == userLetter) {
-                underscoreArray[a] = userLetter;
-                lettersRemaining--;
-            } else if (wordToGuess[a] !== userLetter){
-                console.log("This letter doesn't match.");
-            }
-        }
-        displayUnderscores();
-    }
 
-function getContainers(x) {
-    var element = document.getElementById(x);
-    element.innerHTML = wordToGuess;
+        function checkLetters(keyPressed) {
+            var userLetterAnyCase = keyPressed.key;
+            var userLetter = userLetterAnyCase.toLowerCase();
+            if (lettersRemaining > 0 && guessesRemaining <=0) {
+                getContainers("lost_container", lost);
+            } else if (lettersRemaining > 0 && guessesRemaining > 0) {
+                if (wordToGuess.includes(userLetter) === false) {
+                    guessesRemaining--;
+                    var guessElement = document.getElementById("guesses_remaining_container");
+                    guessElement.innerHTML = guessesRemaining;
+                } else if (wordToGuess.includes(userLetter) === true) {
+                    for( a = 0; a < wordToGuess.length ; a++) {
+                        if (wordToGuess[a] == userLetter) {
+                            underscoreArray[a] = userLetter;
+                            lettersRemaining--;
+                        }
+                    }
+                } 
+            } else if (underscoreArray.join("") === wordToGuess) {
+                getContainers("wins_container", wins++);
+            }
+            displayUnderscores();
+        }
+
+function getContainers(container, replacementhtml) {
+    var element = document.getElementById(container);
+    element.innerHTML = replacementhtml;
 }
 
 var letters = /^[A-Za-z]+$/;
 
-function logKey(keyPressed) {
-  if (keyPressed.keyCode == letters){
-    getContainers("wins_container");
-  }
-}
+// function logKey(keyPressed) {
+//   if (keyPressed.keyCode == letters){
+//     getContainers("wins_container");
+//   }
+// }
 
 // Event Listeners
-
-document.addEventListener('keyup', logKey);
+window.addEventListener('load', startGame);
+// document.addEventListener('keyup', logKey);
 document.addEventListener('keyup', checkLetters);
-// document.addEventListener('keyup', displayUnderscores);
-
-
-// function checkLetters(letterGuessed) {
-//     var userLetter = letterGuessed.key;
-//     console.log("You guessed: " + userLetter);
-//     if (wordToGuess.includes(userLetter)) {
-
-//         for (var i = 0; i < wordToGuess.length; i++) {
-//             var letterCorrect = wordToGuess.charAt(i);
-//             if (wordToGuess.includes(letterCorrect)) {
-//                 console.log(wordToGuess.charAt(i));
-//             } else {
-//                 console.log("This letter does not appear.");
-//             }
-//           }
-//         console.log("the letter you picked is contained in the word.");
-//     } else {
-//         console.log("Not sure...");
-//     }
-// }
