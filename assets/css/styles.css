@@ -1,10 +1,38 @@
 
 .blur{
-   filter: grayscale(100%);
-   filter: blur(50px);
+   filter: grayscale(50%) blur(40px);
 }
 
-.unblur {
-    filter: grayscale(0%);
-    filter: blur(0px);
+.game_container {
+    margin: 0 auto;
+    width: 65vw;
+    overflow:auto;
+    border: solid 20px #D9202E;
+    border-radius: 25px;
 }
+
+.image_container {
+    float: left;
+    margin: 2rem;
+}
+
+.text_container {
+    float: right;
+    margin: 2rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.text_container p {
+    padding: 0.7rem;
+}
+
+#title-img {
+    display: block;
+    margin: 0 auto;
+    width: 65vw;
+}
+
+#topical_image {
+    max-height: 300px;
+}
+

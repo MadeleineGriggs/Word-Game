@@ -1,20 +1,15 @@
 
-var wordArray = [
-    "blue",
-    "red",
-    "yellow"
-]
 
 var pokes = [
     { "name": "bulbasaur", "img": "001Bulbasaur.png" },
     { "name": "ivysaur", "img": "002Ivysaur.png" },
     { "name": "venusaur", "img": "003Venusaur.png" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
+    { "name": "charmander", "img": "004Charmander.png" },
+    { "name": "charmeleon", "img": "005Charmeleon.png" },
+    { "name": "charizard", "img": "006Charizard.png" },
+    { "name": "squirtle", "img": "007Squirtle.png" },
+    { "name": "wartortle", "img": "008Wartortle.png" },
+    { "name": "blastoise", "img": "009Blastoise.png" },
     // { "name": "", "img": "" },
     // { "name": "", "img": "" },
     // { "name": "", "img": "" },
@@ -72,6 +67,8 @@ function reset() {
     getContainers("guessed_letters_container", guessedLettersIncorrect);
     underscoreArray = [];
     pokeImage = "";
+    var won = document.getElementById("win_or_lose_container");
+    won.innerHTML = "";
     startGame();
 }
 
@@ -123,10 +120,16 @@ function checkLetters(keyPressed) {
 
 function checkWin() {
     if(underscoreArray.indexOf("_") === -1){
-        alert("You've guessed the right word!");
+        document.getElementById("topical_image").classList.remove("blur");
+        var won = document.getElementById("win_or_lose_container");
+        won.innerHTML = "You've won! The pokemon was " + wordToGuess;
         wins++;
-        reset();
         getContainers("wins_container", wins);
+        setTimeout(function(){
+            reset();
+        }, 3000);
+        
+ 
         
     } else if(guessesRemaining < 0) {
         alert("You've run out of guesses for this word!");
@@ -140,7 +143,6 @@ function getContainers(container, replacementhtml) {
     var element = document.getElementById(container);
     element.innerHTML = replacementhtml;
 }
-
 
 
 // Event Listeners
