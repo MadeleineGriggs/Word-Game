@@ -5,6 +5,34 @@ var wordArray = [
     "yellow"
 ]
 
+var pokes = [
+    { "name": "bulbasaur", "img": "001Bulbasaur.png" },
+    { "name": "ivysaur", "img": "002Ivysaur.png" },
+    { "name": "venusaur", "img": "003Venusaur.png" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+
+    { "name": "jigglypuff", "img": "039Jigglypuff.png"}
+]
+
+
 var messages = {
     "winMessage": "Congrats, you've guessed the word correctly!",
     "lostMessage": "You've Lost!",
@@ -13,36 +41,45 @@ var messages = {
     "blankMessage": " "
 }
 
-// An array to store the underscores that represent the missing letters.
 var underscoreArray = [];
-
-// Randomly selects a word from the wordArray.
-var wordToGuess = wordArray[Math.floor(Math.random() * wordArray.length)];
-
-// fills the UnderscoreArray with the correct number of underscores for the randomly selected word.
-for (i = 0; i < wordToGuess.length; i++) {
-    underscoreArray[i] = "_"; 
-}
-
-
+var wordToGuess = "";
+var pokeImage = "";
 var lettersRemaining = wordToGuess.length;
 var guessesRemaining = 5;
 var wins = 0;
+var losses = 0;
 var guessedLettersIncorrect = [];
-var startedGame = false;
-var endedGame = false;
 var userLetterAnyCase = "";
 var userLetter = "";
 
 
+function startGame() {
+    var pokeIndex = Math.floor(Math.random()*pokes.length);
+    wordToGuess = pokes[pokeIndex]["name"];
+    pokeImage = pokes[pokeIndex]["img"];
+    document.getElementById("topical_image").src = "assets/images/" + pokeImage;
+    document.getElementById("topical_image").classList.add("blur");
+    for (i = 0; i < wordToGuess.length; i++) {
+        underscoreArray[i] = "_"; 
+    }
+    displayUnderscores();
+}
+
 function reset() {
-  wordToGuess = wordArray[Math.floor(Math.random() * wordArray.length)];
+    guessesRemaining = 5;
+    getContainers("guesses_remaining_container", guessesRemaining);
+    guessedLettersIncorrect = [];
+    getContainers("guessed_letters_container", guessedLettersIncorrect);
+    underscoreArray = [];
+    pokeImage = "";
+    startGame();
 }
 
 // displays the correct number of blank spaces for the word that was randomly selected. Also adds a space between each underscore.
 function displayUnderscores() {
     var underScores = document.getElementById("word_to_guess_container");
     underScores.innerHTML = underscoreArray.join(" ");
+    // checkWin();
 }
 
 function wrongLetter() {
@@ -65,45 +102,47 @@ function wrongLetter() {
     }
 }
 
-        function checkLetters(keyPressed) {
-            // whichever key the user presses will be converted to lower case to check against the array.
-            userLetterAnyCase = keyPressed.key;
-            userLetter = userLetterAnyCase.toLowerCase();
-                if (wordToGuess.includes(userLetter) === false) {
-                    wrongLetter();
-                } else if (wordToGuess.includes(userLetter) === true) {
-            // if the user picks a letter that is in the word, then replace the underscore at the correct index with the letter.
-                    for( a = 0; a < wordToGuess.length ; a++) {
-                        if (wordToGuess[a] == userLetter) {
-                            underscoreArray[a] = userLetter;
-                            lettersRemaining--;
-                        }
-                    }
-                } 
-            displayUnderscores();
-            checkWin();
-        }
-
-        function checkWin() {
-            if(underscoreArray.indexOf("_") === -1){
-                alert("You've guessed the right word!");
-                wins++;
-                reset();
-                getContainers("wins_container", wins);
-            } else if(guessesRemaining < 0) {
-                alert("You've run out of guesses for this word!");
+function checkLetters(keyPressed) {
+    // whichever key the user presses will be converted to lower case to check against the array.
+    userLetterAnyCase = keyPressed.key;
+    userLetter = userLetterAnyCase.toLowerCase();
+    if (wordToGuess.includes(userLetter) === false) {
+        wrongLetter();
+    } else if (wordToGuess.includes(userLetter) === true) {
+    // if the user picks a letter that is in the word, then replace the underscore at the correct index with the letter.
+        for( a = 0; a < wordToGuess.length ; a++) {
+            if (wordToGuess[a] == userLetter) {
+                underscoreArray[a] = userLetter;
+                lettersRemaining--;
             }
         }
+    } 
+    displayUnderscores();
+    setTimeout(checkWin, 20);
+}
+
+function checkWin() {
+    if(underscoreArray.indexOf("_") === -1){
+        alert("You've guessed the right word!");
+        wins++;
+        reset();
+        getContainers("wins_container", wins);
+        
+    } else if(guessesRemaining < 0) {
+        alert("You've run out of guesses for this word!");
+        losses++;
+        reset();
+        getContainers("lost_container", losses);
+    }
+}
 
 function getContainers(container, replacementhtml) {
     var element = document.getElementById(container);
     element.innerHTML = replacementhtml;
 }
 
-var letters = /^[A-Za-z]+$/;
 
 
 // Event Listeners
-// window.addEventListener('load', startGame);
-// document.addEventListener('keyup', logKey);
+window.addEventListener('load', startGame);
 document.addEventListener('keyup', checkLetters);

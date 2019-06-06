@@ -1,0 +1,10 @@
+
+.blur{
+   filter: grayscale(100%);
+   filter: blur(50px);
+}
+
+.unblur {
+    filter: grayscale(0%);
+    filter: blur(0px);
+}
