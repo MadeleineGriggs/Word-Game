@@ -1,4 +1,8 @@
 
+body {
+    background-image: url("../images/tiledPika.png");
+    background-repeat: repeat;
+}
 .blur{
    filter: grayscale(50%) blur(40px);
 }
@@ -9,6 +13,7 @@
     overflow:auto;
     border: solid 20px #D9202E;
     border-radius: 25px;
+    background-color: white;
 }
 
 .image_container {
@@ -29,10 +34,13 @@
 #title-img {
     display: block;
     margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
     width: 65vw;
 }
 
 #topical_image {
     max-height: 300px;
+    padding: 0.7rem;
 }
 
