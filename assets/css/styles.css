@@ -4,25 +4,27 @@ body {
     background-repeat: repeat;
 }
 .blur{
-   filter: grayscale(50%) blur(40px);
+   filter: grayscale(40%) blur(40px);
 }
 
 .game_container {
     margin: 0 auto;
     width: 65vw;
     overflow:auto;
-    border: solid 20px #D9202E;
-    border-radius: 25px;
+    border: solid 30px #D9202E;
+    border-radius: 5px 70px;
     background-color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .image_container {
-    float: left;
     margin: 2rem;
 }
 
 .text_container {
-    float: right;
     margin: 2rem;
     font-family: 'Roboto', sans-serif;
 }
@@ -42,5 +44,16 @@ body {
 #topical_image {
     max-height: 300px;
     padding: 0.7rem;
+}
+
+.text_area {
+    font-family: 'VT323', monospace;
+    font-size: 1.25rem;
+    width: 250px;
+    height: 80px;
+    resize: none;
+    color: #ffffff;
+    background-color: #1e1e1e;
+    padding: 10px;
 }
 

@@ -67,8 +67,8 @@ function reset() {
     getContainers("guessed_letters_container", guessedLettersIncorrect);
     underscoreArray = [];
     pokeImage = "";
-    var won = document.getElementById("win_or_lose_container");
-    won.innerHTML = "";
+    var won = document.getElementById("pokeDex");
+    won.value = "The PokeDex says...";
     startGame();
 }
 
@@ -121,8 +121,8 @@ function checkLetters(keyPressed) {
 function checkWin() {
     if(underscoreArray.indexOf("_") === -1){
         document.getElementById("topical_image").classList.remove("blur");
-        var won = document.getElementById("win_or_lose_container");
-        won.innerHTML = "You've won! The pokemon was " + wordToGuess;
+        var won = document.getElementById("pokeDex");
+        won.value = "You've won! The pokemon was " + wordToGuess + ". Restarting game now...";
         wins++;
         getContainers("wins_container", wins);
         setTimeout(function(){
