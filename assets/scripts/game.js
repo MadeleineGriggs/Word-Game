@@ -1,4 +1,5 @@
 
+// The array from which the random word to guess is selected. 
 
 var pokes = [
     { "name": "bulbasaur", "img": "001Bulbasaur.png" },
@@ -10,13 +11,13 @@ var pokes = [
     { "name": "squirtle", "img": "007Squirtle.png" },
     { "name": "wartortle", "img": "008Wartortle.png" },
     { "name": "blastoise", "img": "009Blastoise.png" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
+    { "name": "caterpie", "img": "010Caterpie.png" },
+    { "name": "metapod", "img": "011Metapod.png" },
+    { "name": "butterfree", "img": "012Butterfree.png" },
+    { "name": "weedle", "img": "013Weedle.png" },
+    { "name": "kakuna", "img": "013Weedle.png" },
+    { "name": "beedrill", "img": "015Beedrill.png" },
+    // { "name": "pidgey", "img": "016Pidgey.png" },
     // { "name": "", "img": "" },
     // { "name": "", "img": "" },
     // { "name": "", "img": "" },
@@ -29,6 +30,7 @@ var pokes = [
 
 
 
+//Global Variables
 
 var underscoreArray = [];
 var wordToGuess = "";
@@ -54,6 +56,8 @@ function startGame() {
     displayUnderscores();
 }
 
+// After the user has won or lost a game, it resets the guesses remaining counter, and emptys the arrays for the incorrect letters and underscores.
+// Also resets the image and the pokeDex text.
 function reset() {
     guessesRemaining = 5;
     getContainers("guesses_remaining_container", guessesRemaining);
@@ -70,13 +74,14 @@ function reset() {
 function displayUnderscores() {
     var underScores = document.getElementById("word_to_guess_container");
     underScores.innerHTML = underscoreArray.join(" ");
-    // checkWin();
 }
 
+
+// If the user selected a letter that does not appear in the word to guess, this function adds the incorrect letters to an array of incorrect
+// letters, displays them, and reduces the guesses remaining by 1. If they had already guessed that letter, it does not remove a guess or
+// add the letter to the incorrect letters, but instead makes the pokeDex area display an error message.
 function wrongLetter() {
     if (guessedLettersIncorrect.includes(userLetter) === true) {
-    // if the user picks an incorrect letter that they already picked, don't remove a guess, and pop up a message that tells
-    // them they already picked that letter.
         var alreadyGuessed = document.getElementById("pokeDex");
         alreadyGuessed.value = "You've already picked that letter before!";
 
@@ -84,7 +89,6 @@ function wrongLetter() {
             alreadyGuessed.value = "The PokeDex says...";
         }, 3000);
     } else if (wordToGuess.includes(userLetter) === false) {
-    //If the letter is not included in the word to guess, reduce guesses remaining by 1 and add the incorrect letter to the guessed letters section.
         guessesRemaining--;
         var guessElement = document.getElementById("guesses_remaining_container");
         guessElement.innerHTML = guessesRemaining;
@@ -94,13 +98,13 @@ function wrongLetter() {
     }
 }
 
+// Checks if the letter the user inputted is in the word to Guess. If it does not appear, it runs the function wrongLetter. If it does, it
+// replaces the underscore at the correct index for the letter. Then updates the display of the underscores.
 function checkLetters(keyPressed) {
-    // whichever key the user presses will be converted to lower case to check against the array.
     userLetter = keyPressed.key.toLowerCase();
     if (wordToGuess.includes(userLetter) === false) {
         wrongLetter();
     } else if (wordToGuess.includes(userLetter) === true) {
-    // if the user picks a letter that is in the word, then replace the underscore at the correct index with the letter.
         for( a = 0; a < wordToGuess.length ; a++) {
             if (wordToGuess[a] == userLetter) {
                 underscoreArray[a] = userLetter;
@@ -112,6 +116,8 @@ function checkLetters(keyPressed) {
     setTimeout(checkWin, 20);
 }
 
+// Checks if the user has won the game by seeing if there are any underscores remaining in the underscore array. Checks if the user
+// has lost the game by seeing if they have any remaining guesses. Adds to the wins or the losses counters. Then runs the reset function.
 function checkWin() {
     if(underscoreArray.indexOf("_") === -1){
         document.getElementById("topical_image").classList.remove("blur");
@@ -134,6 +140,7 @@ function checkWin() {
     }
 }
 
+// a function to make it faster to set the innerhtml of various elements with Ids.
 function getContainers(container, replacementhtml) {
     var element = document.getElementById(container);
     element.innerHTML = replacementhtml;
