@@ -1,35 +1,4 @@
 
-// The array from which the random word to guess is selected. 
-
-var pokes = [
-    { "name": "bulbasaur", "img": "001Bulbasaur.png" },
-    { "name": "ivysaur", "img": "002Ivysaur.png" },
-    { "name": "venusaur", "img": "003Venusaur.png" },
-    { "name": "charmander", "img": "004Charmander.png" },
-    { "name": "charmeleon", "img": "005Charmeleon.png" },
-    { "name": "charizard", "img": "006Charizard.png" },
-    { "name": "squirtle", "img": "007Squirtle.png" },
-    { "name": "wartortle", "img": "008Wartortle.png" },
-    { "name": "blastoise", "img": "009Blastoise.png" },
-    { "name": "caterpie", "img": "010Caterpie.png" },
-    { "name": "metapod", "img": "011Metapod.png" },
-    { "name": "butterfree", "img": "012Butterfree.png" },
-    { "name": "weedle", "img": "013Weedle.png" },
-    { "name": "kakuna", "img": "013Weedle.png" },
-    { "name": "beedrill", "img": "015Beedrill.png" },
-    // { "name": "pidgey", "img": "016Pidgey.png" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-    // { "name": "", "img": "" },
-
-    { "name": "jigglypuff", "img": "039Jigglypuff.png"}
-]
-
-
-
 //Global Variables
 
 var underscoreArray = [];
@@ -146,6 +115,62 @@ function getContainers(container, replacementhtml) {
     element.innerHTML = replacementhtml;
 }
 
+// The array from which the random word to guess is selected. 
+
+var pokes = [
+    { "name": "bulbasaur", "img": "001Bulbasaur.png" },
+    { "name": "ivysaur", "img": "002Ivysaur.png" },
+    { "name": "venusaur", "img": "003Venusaur.png" },
+    { "name": "charmander", "img": "004Charmander.png" },
+    { "name": "charmeleon", "img": "005Charmeleon.png" },
+    { "name": "charizard", "img": "006Charizard.png" },
+    { "name": "squirtle", "img": "007Squirtle.png" },
+    { "name": "wartortle", "img": "008Wartortle.png" },
+    { "name": "blastoise", "img": "009Blastoise.png" },
+    { "name": "caterpie", "img": "010Caterpie.png" },
+    { "name": "metapod", "img": "011Metapod.png" },
+    { "name": "butterfree", "img": "012Butterfree.png" },
+    { "name": "weedle", "img": "013Weedle.png" },
+    { "name": "kakuna", "img": "013Weedle.png" },
+    { "name": "beedrill", "img": "015Beedrill.png" },
+    { "name": "pidgey", "img": "016Pidgey.png" },
+    { "name": "pidgeotto", "img": "017Pidgeotto.png" },
+    { "name": "pidgeot", "img": "018Pidgeot.png" },
+    { "name": "rattata", "img": "019Rattata.png" },
+    { "name": "raticate", "img": "020Raticate.png" },
+    { "name": "spearow", "img": "021Spearow.png" },
+    { "name": "fearow", "img": "022Fearow.png" },
+    { "name": "ekans", "img": "023Ekans.png" },
+    { "name": "arbok", "img": "024Arbok.png" },
+    { "name": "pikachu", "img": "025Pikachu.png" },
+    { "name": "raichu", "img": "026Raichu.png" },
+    { "name": "sandshrew", "img": "027Sandshrew.png" },
+    { "name": "sandslash", "img": "028Sandslash.png" },
+    { "name": "nidoran", "img": "029Nidoran.png" },
+    { "name": "nidorina", "img": "030Nidorina.png" },
+    { "name": "nidoqueen", "img": "031Nidoqueen.png" },
+    { "name": "nidoran", "img": "032Nidoran.png" },
+    { "name": "nidorino", "img": "033Nidorino.png" },
+    { "name": "nidoking", "img": "034Nidoking.png" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+    // { "name": "", "img": "" },
+
+    { "name": "jigglypuff", "img": "039Jigglypuff.png"}
+]
 
 // Event Listeners
 window.addEventListener('load', startGame);
