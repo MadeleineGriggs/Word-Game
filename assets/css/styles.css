@@ -1,3 +1,9 @@
+:root {
+    --pokeRed:#D9202E;
+    --pokeBlue: #386abb;
+    --charcoal: #1e1e1e;
+    --offWhite: #f9f9f9;
+}
 
 body {
     background-image: url("../images/tiledPika.png");
@@ -11,13 +17,14 @@ body {
     margin: 0 auto;
     width: 65vw;
     overflow:auto;
-    border: solid 30px #D9202E;
+    border: solid 30px var(--pokeRed);
     border-radius: 5px 70px;
-    background-color: white;
+    background-color: var(--offWhite);
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 2rem; 
 }
 
 .image_container {
@@ -29,14 +36,10 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.text_container p {
-    padding: 0.7rem;
-}
-
 #title-img {
     display: block;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     margin-bottom: 1rem;
     width: 65vw;
 }
@@ -50,10 +53,27 @@ body {
     font-family: 'VT323', monospace;
     font-size: 1.25rem;
     width: 250px;
-    height: 80px;
+    height: 70px;
     resize: none;
-    color: #ffffff;
-    background-color: #1e1e1e;
+    color: var(--offWhite);
+    background-color: var(--charcoal);
     padding: 10px;
 }
 
+.text_titles {
+    font-size: 1.15rem;
+    color: var(--charcoal);
+    padding-top: 0.8rem;
+    padding-bottom: 0.5rem;
+}
+
+.instructions {
+    font-size: 1.25rem;
+    color: var(--pokeBlue);
+    padding-top: 0.8rem;
+}
+
+.counter_text {
+    font-size: 1rem;
+    color: var(--pokeBlue);
+}

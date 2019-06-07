@@ -28,13 +28,7 @@ var pokes = [
 ]
 
 
-var messages = {
-    "winMessage": "Congrats, you've guessed the word correctly!",
-    "lostMessage": "You've Lost!",
-    "errorMessage": "Something's not working here",
-    "guessedAlready": "You've already guessed that letter!",
-    "blankMessage": " "
-}
+
 
 var underscoreArray = [];
 var wordToGuess = "";
@@ -44,15 +38,15 @@ var guessesRemaining = 5;
 var wins = 0;
 var losses = 0;
 var guessedLettersIncorrect = [];
-var userLetterAnyCase = "";
 var userLetter = "";
 
-
+// selects a random pokemon from the array, picks out the name and image of the pokemon, applies the image to the screen,
+// and fills the underscore array with an underscore for each letter of the pokemon name.
 function startGame() {
     var pokeIndex = Math.floor(Math.random()*pokes.length);
     wordToGuess = pokes[pokeIndex]["name"];
     pokeImage = pokes[pokeIndex]["img"];
-    document.getElementById("topical_image").src = "assets/images/" + pokeImage;
+    document.getElementById("topical_image").src = "assets/images/pokemonImages/" + pokeImage;
     document.getElementById("topical_image").classList.add("blur");
     for (i = 0; i < wordToGuess.length; i++) {
         underscoreArray[i] = "_"; 
@@ -83,10 +77,11 @@ function wrongLetter() {
     if (guessedLettersIncorrect.includes(userLetter) === true) {
     // if the user picks an incorrect letter that they already picked, don't remove a guess, and pop up a message that tells
     // them they already picked that letter.
-        var alreadyGuessed = document.getElementById("guessed_already");
-        alreadyGuessed.innerHTML = messages["guessedAlready"];
+        var alreadyGuessed = document.getElementById("pokeDex");
+        alreadyGuessed.value = "You've already picked that letter before!";
+
         setTimeout(function(){
-            alreadyGuessed.innerHTML = '';
+            alreadyGuessed.value = "The PokeDex says...";
         }, 3000);
     } else if (wordToGuess.includes(userLetter) === false) {
     //If the letter is not included in the word to guess, reduce guesses remaining by 1 and add the incorrect letter to the guessed letters section.
@@ -101,8 +96,7 @@ function wrongLetter() {
 
 function checkLetters(keyPressed) {
     // whichever key the user presses will be converted to lower case to check against the array.
-    userLetterAnyCase = keyPressed.key;
-    userLetter = userLetterAnyCase.toLowerCase();
+    userLetter = keyPressed.key.toLowerCase();
     if (wordToGuess.includes(userLetter) === false) {
         wrongLetter();
     } else if (wordToGuess.includes(userLetter) === true) {
@@ -128,14 +122,15 @@ function checkWin() {
         setTimeout(function(){
             reset();
         }, 3000);
-        
- 
-        
     } else if(guessesRemaining < 0) {
-        alert("You've run out of guesses for this word!");
+        document.getElementById("topical_image").classList.remove("blur");
+        var lost = document.getElementById("pokeDex");
+        lost.value = "You've lost! The pokemon was " + wordToGuess + ". Restarting game now...";
         losses++;
-        reset();
         getContainers("lost_container", losses);
+        setTimeout(function(){
+            reset();
+        }, 3000);
     }
 }
 

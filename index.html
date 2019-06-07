@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/styles.css"/>
     <link href="https://fonts.googleapis.com/css?family=Roboto|VT323&display=swap" rel="stylesheet">
-    <title>Word Guess Game</title>
+    <title>Guess That Pokemon!</title>
 </head>
 <body>
     <img id="title-img" src= "assets/images/guessThatPoke.png" alt="Guess That Pokemon!">
@@ -19,18 +19,17 @@
         <div class="text_container">
             <textarea class="text_area" id="pokeDex" readonly>The PokeDex says...</textarea>
             <p id="win_or_lose_container"></p>
-            <p>Press any Key to get Started</p>
-            <p>Losses</p>
-            <p id="lost_container">0</p>
-            <p>Wins</p>
-                <p id="wins_container">0</p>
-            <p>Current Word</p>
-                <p id="word_to_guess_container"></p>
-            <p>Number of Guesses Remaining</p>
-                <p id="guesses_remaining_container"></p>
-            <p>Letters Already Guessed</p>
-                <p id="guessed_already"></p>
-                <p id="guessed_letters_container"></p>
+            <p class="instructions">Press any Key to get Started</p>
+            <p class="text_titles">Losses</p>
+            <p id="lost_container" class="counter_text">0</p>
+            <p class="text_titles">Wins</p>
+                <p id="wins_container" class="counter_text">0</p>
+            <p class="text_titles">Current Word</p>
+                <p id="word_to_guess_container" class="counter_text"></p>
+            <p class="text_titles">Number of Guesses Remaining</p>
+                <p id="guesses_remaining_container" class="counter_text"></p>
+            <p class="text_titles">Letters Already Guessed</p>
+                <p id="guessed_letters_container" class="counter_text"></p>
         </div>
     </div>
 
