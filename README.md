@@ -21,7 +21,7 @@ The game loads a randomly selected pokemon, and displays the number of letters i
 ### Fonts Used
 - Font Family: 'VT323', monospace. Used for PokeDex text.
 - Font Family: 'Roboto', sans-serif. Used for game container text.
-- Note: The title 'Guess That Pokemon!' is an image, since I could not find a web font that looked similar to the pokemon logo. You can find the font generator I used to creat the image here: [Pokemon Font Generator](https://fontmeme.com/pokemon-font/)
+- Note: The title 'Guess That Pokemon!' is an image, since I could not find a web font that looked similar to the pokemon logo. You can find the font generator I used to create the image here: [Pokemon Font Generator](https://fontmeme.com/pokemon-font/)
 
 ### Images Used
 - I found the images for the pokemon off the site Bulbapedia, a fan made wikipedia style site, found here: [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page)
