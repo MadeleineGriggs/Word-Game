@@ -1,6 +1,6 @@
 # Word Game - Guess that Pokemon!
 A word guess or Hangman style game, based on guessing the names of the original 151 pokemon.
-[Play the Game Here!](https://typicu.github.io/Word-Game/)
+[Play the Game Here!](https://madeleinegriggs.github.io/Word-Game/)
 
 ## Author
 Madeleine Griggs, however all pokemon related images and fonts are owned by the Pokemon Company.
